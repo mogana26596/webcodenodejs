@@ -21,7 +21,7 @@ module.exports.getPosts = async (req,res,next) => {
     }
  }
 
-module.exports.createusers = async (req,res,next) => {
+module.exports.createuser = async (req,res,next) => {
     try{
         const insertedResponse = await mongo.selectedDb.collection("users").insertOne(req.body.user);
         res.send(insertedResponse);
@@ -31,7 +31,7 @@ module.exports.createusers = async (req,res,next) => {
     }
 }
 
-module.exports.updateusers = async (req,res,next) => {
+module.exports.updateuser = async (req,res,next) => {
     try{
         const updatedData = await mongo.selectedDb.collection("users")
                         .findOneAndUpdate({_id:ObjectId(req.params.userId)}, 
@@ -44,7 +44,7 @@ module.exports.updateusers = async (req,res,next) => {
     }
 }
 
-module.exports.deleteusers = async (req,res,next) => {
+module.exports.deleteuser = async (req,res,next) => {
     try{
         const deletedData = await mongo.selectedDb.collection("users").remove({_id: ObjectId(req.params.userId)});
         res.send(deletedData)
