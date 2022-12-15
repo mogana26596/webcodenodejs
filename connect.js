@@ -1,14 +1,12 @@
 const {MongoClient} = require('mongodb');
-
-
 module.exports = {
     selectedDb: {},
     async connect(){
         try {
-            const client = await MongoClient.connect("mongodb://localhost:27017");
+            const client = await MongoClient.connect(process.env.MONGODB_URL);
             this.selectedDb = client.db('guvi');
-            
-        } catch(err) {
+            console.log(this.selectedDb)
+               } catch(err) {
             console.error(err);
         }
     },
